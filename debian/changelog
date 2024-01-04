@@ -1,9 +1,18 @@
-maven-archiver (3.2.0-2.1) unstable; urgency=medium
+maven-archiver (3.6.0-1) unstable; urgency=medium
 
-  * Non maintainer upload by the Reproducible Builds team.
-  * No source change upload to rebuild on buildd with .buildinfo files.
+  * Team upload.
+  * New upstream release
+    - Refreshed the patches
+    - Depend on libplexus-archiver-java (>= 4.3)
+    - Depend on libassertj-core-java (>= 3.14)
+    - Depend on junit5 (>= 5.9) instead of junit4
+    - Set the language level to Java 8
+  * Removed the -java-doc package
+  * Standards-Version updated to 4.6.1
+  * Switch to debhelper level 13
+  * Use salsa.debian.org Vcs-* URLs
 
- -- Holger Levsen <holger@debian.org>  Mon, 28 Dec 2020 15:17:10 +0100
+ -- Emmanuel Bourg <ebourg@apache.org>  Tue, 11 Oct 2022 11:38:19 +0200
 
 maven-archiver (3.2.0-2) unstable; urgency=medium
 

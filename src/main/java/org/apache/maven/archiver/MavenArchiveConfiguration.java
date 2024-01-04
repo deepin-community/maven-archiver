@@ -29,7 +29,6 @@ import java.util.Map;
  * Capture common archive configuration.
  *
  * @author <a href="mailto:brett@apache.org">Brett Porter</a>
- * @version $Id: MavenArchiveConfiguration.java 1738422 2016-04-10 11:51:15Z khmarbaise $
  */
 // TODO Is this general enough to be in Plexus Archiver?
 public class MavenArchiveConfiguration
@@ -47,9 +46,9 @@ public class MavenArchiveConfiguration
     //TODO: Rename this attribute to manifestConfiguration;
     private ManifestConfiguration manifest;
 
-    private Map<String, String> manifestEntries = new LinkedHashMap<String, String>();
+    private Map<String, String> manifestEntries = new LinkedHashMap<>();
 
-    private List<ManifestSection> manifestSections = new LinkedList<ManifestSection>();
+    private List<ManifestSection> manifestSections = new LinkedList<>();
 
     /**
      * @since 2.2
@@ -62,6 +61,8 @@ public class MavenArchiveConfiguration
     private File pomPropertiesFile;
 
     /**
+     * <p>isCompress.</p>
+     *
      * @return {@link #compress}
      */
     public boolean isCompress()
@@ -70,6 +71,8 @@ public class MavenArchiveConfiguration
     }
 
     /**
+     * <p>isRecompressAddedZips.</p>
+     *
      * @return {@link #recompressAddedZips}
      */
     public boolean isRecompressAddedZips()
@@ -78,6 +81,8 @@ public class MavenArchiveConfiguration
     }
 
     /**
+     * <p>Setter for the field <code>recompressAddedZips</code>.</p>
+     *
      * @param recompressAddedZips {@link #recompressAddedZips}
      */
     public void setRecompressAddedZips( boolean recompressAddedZips )
@@ -86,6 +91,8 @@ public class MavenArchiveConfiguration
     }
 
     /**
+     * <p>isIndex.</p>
+     *
      * @return {@link #index}
      */
     public boolean isIndex()
@@ -94,6 +101,8 @@ public class MavenArchiveConfiguration
     }
 
     /**
+     * <p>isAddMavenDescriptor.</p>
+     *
      * @return {@link #addMavenDescriptor}
      */
     public boolean isAddMavenDescriptor()
@@ -102,6 +111,8 @@ public class MavenArchiveConfiguration
     }
 
     /**
+     * <p>Getter for the field <code>manifestFile</code>.</p>
+     *
      * @return {@link #manifestFile}
      */
     public File getManifestFile()
@@ -110,6 +121,8 @@ public class MavenArchiveConfiguration
     }
 
     /**
+     * <p>Getter for the field <code>manifest</code>.</p>
+     *
      * @return {@link #manifest}
      */
     //TODO: Change the name of this method into getManifestConfiguration()
@@ -123,6 +136,8 @@ public class MavenArchiveConfiguration
     }
 
     /**
+     * <p>Setter for the field <code>compress</code>.</p>
+     *
      * @param compress set compress to true/false.
      */
     public void setCompress( boolean compress )
@@ -131,6 +146,8 @@ public class MavenArchiveConfiguration
     }
 
     /**
+     * <p>Setter for the field <code>index</code>.</p>
+     *
      * @param index set index to true/false.
      */
     public void setIndex( boolean index )
@@ -139,6 +156,8 @@ public class MavenArchiveConfiguration
     }
 
     /**
+     * <p>Setter for the field <code>addMavenDescriptor</code>.</p>
+     *
      * @param addMavenDescriptor activate to add maven descriptor or not.
      */
     public void setAddMavenDescriptor( boolean addMavenDescriptor )
@@ -147,6 +166,8 @@ public class MavenArchiveConfiguration
     }
 
     /**
+     * <p>Setter for the field <code>manifestFile</code>.</p>
+     *
      * @param manifestFile The manifest file.
      */
     public void setManifestFile( File manifestFile )
@@ -155,7 +176,9 @@ public class MavenArchiveConfiguration
     }
 
     /**
-     * @param manifest {@link ManifestConfiguration}
+     * <p>Setter for the field <code>manifest</code>.</p>
+     *
+     * @param manifest {@link org.apache.maven.archiver.ManifestConfiguration}
      */
     public void setManifest( ManifestConfiguration manifest )
     {
@@ -163,6 +186,8 @@ public class MavenArchiveConfiguration
     }
 
     /**
+     * <p>addManifestEntry.</p>
+     *
      * @param key The key of the entry.
      * @param value The value of the entry.
      */
@@ -172,6 +197,8 @@ public class MavenArchiveConfiguration
     }
 
     /**
+     * <p>addManifestEntries.</p>
+     *
      * @param map The whole map which should be added.
      */
     public void addManifestEntries( Map<String, String> map )
@@ -180,6 +207,8 @@ public class MavenArchiveConfiguration
     }
 
     /**
+     * <p>isManifestEntriesEmpty.</p>
+     *
      * @return are there entries true yes false otherwise.
      */
     public boolean isManifestEntriesEmpty()
@@ -188,6 +217,8 @@ public class MavenArchiveConfiguration
     }
 
     /**
+     * <p>Getter for the field <code>manifestEntries</code>.</p>
+     *
      * @return {@link #manifestEntries}
      */
     public Map<String, String> getManifestEntries()
@@ -196,6 +227,8 @@ public class MavenArchiveConfiguration
     }
 
     /**
+     * <p>Setter for the field <code>manifestEntries</code>.</p>
+     *
      * @param manifestEntries {@link #manifestEntries}
      */
     public void setManifestEntries( Map<String, String> manifestEntries )
@@ -204,7 +237,9 @@ public class MavenArchiveConfiguration
     }
 
     /**
-     * @param section {@link ManifestSection}
+     * <p>addManifestSection.</p>
+     *
+     * @param section {@link org.apache.maven.archiver.ManifestSection}
      */
     public void addManifestSection( ManifestSection section )
     {
@@ -212,7 +247,9 @@ public class MavenArchiveConfiguration
     }
 
     /**
-     * @param list Added list of {@link ManifestSection}.
+     * <p>addManifestSections.</p>
+     *
+     * @param list Added list of {@link org.apache.maven.archiver.ManifestSection}.
      */
     public void addManifestSections( List<ManifestSection> list )
     {
@@ -220,6 +257,8 @@ public class MavenArchiveConfiguration
     }
 
     /**
+     * <p>isManifestSectionsEmpty.</p>
+     *
      * @return if manifestSections is empty or not.
      */
     public boolean isManifestSectionsEmpty()
@@ -228,6 +267,8 @@ public class MavenArchiveConfiguration
     }
 
     /**
+     * <p>Getter for the field <code>manifestSections</code>.</p>
+     *
      * @return {@link #manifestSections}
      */
     public List<ManifestSection> getManifestSections()
@@ -236,7 +277,9 @@ public class MavenArchiveConfiguration
     }
 
     /**
-     * @param manifestSections set The list of {@link ManifestSection}.
+     * <p>Setter for the field <code>manifestSections</code>.</p>
+     *
+     * @param manifestSections set The list of {@link org.apache.maven.archiver.ManifestSection}.
      */
     public void setManifestSections( List<ManifestSection> manifestSections )
     {

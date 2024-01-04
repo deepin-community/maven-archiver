@@ -39,13 +39,17 @@
   &lt;compress/&gt;
   &lt;forced/&gt;
   &lt;index/&gt;
+  &lt;pomPropertiesFile/&gt;
+
+  &lt;manifestFile/&gt;
   &lt;<a href="#class_manifest">manifest</a>&gt;
     &lt;addClasspath/&gt;
+    &lt;addDefaultEntries/&gt;
     &lt;addDefaultImplementationEntries/&gt;
     &lt;addDefaultSpecificationEntries/&gt;
+    &lt;addBuildEnvironmentEntries/&gt;
     &lt;addExtensions/&gt;
     &lt;classpathLayoutType/&gt;
-    &lt;classpathMavenRepositoryLayout/&gt;
     &lt;classpathPrefix/&gt;
     &lt;customClasspathLayout/&gt;
     &lt;mainClass/&gt;
@@ -55,7 +59,6 @@
   &lt;manifestEntries&gt;
     &lt;key&gt;value&lt;/key&gt;
   &lt;/manifestEntries&gt;
-  &lt;manifestFile/&gt;
   &lt;manifestSections&gt;
     &lt;<a href="#class_manifestSection">manifestSection</a>&gt;
       &lt;name/&gt;
@@ -64,7 +67,6 @@
       &lt;/manifestEntries&gt;
     &lt;manifestSection/&gt;
   &lt;/manifestSections&gt;
-  &lt;pomPropertiesFile/&gt;
 &lt;/archive&gt;
       </source>
 
@@ -114,7 +116,7 @@
               and rebuild the archive, only if the latter timestamp precedes the
               former timestamps. Checking for timestamps will typically offer a
               performance gain (in particular, if the following steps in a build
-              can be suppressed, if an archive isn't recrated) on the cost that
+              can be suppressed, if an archive isn't recreated) on the cost that
               you get inaccurate results from time to time. In particular, removal
               of source files won't be detected.
               <p>
@@ -137,6 +139,22 @@
             <td></td>
           </tr>
           <tr>
+            <td>pomPropertiesFile</td>
+            <td>
+              Use this to override the auto created
+              <a href="#pom-properties-content">pom.properties</a> file
+              (only if <code>addMavenDescriptor</code> is set to <code>true</code>)
+            </td>
+            <td>File</td>
+            <td>2.3</td>
+          </tr>
+          <tr>
+            <td>manifestFile</td>
+            <td>With this you can supply your own manifest file.</td>
+            <td>File</td>
+            <td></td>
+          </tr>
+          <tr>
             <td><a href="#class_manifest">manifest</a></td>
             <td></td>
             <td></td>
@@ -149,28 +167,24 @@
             <td></td>
           </tr>
           <tr>
-            <td>manifestFile</td>
-            <td>With this you can supply your own manifest file.</td>
-            <td>File</td>
-            <td></td>
-          </tr>
-          <tr>
             <td><a href="#class_manifestSection">manifestSections</a></td>
             <td></td>
             <td></td>
             <td></td>
           </tr>
-          <tr>
-            <td>pomPropertiesFile</td>
-            <td>
-              Use this to override the auto created
-              <a href="#pom-properties-content">pom.properties</a> file
-              (only if <code>addMavenDescriptor</code> is set to <code>true</code>)
-            </td>
-            <td>File</td>
-            <td>2.3</td>
-          </tr>
         </table>
+      </subsection>
+
+      <a name="pom-properties-content"/>
+      <subsection name="pom.properties content">
+        <p>
+          The auto created <code>pom.properties</code> file will contain the
+          following content:
+        </p>
+        <source>
+artifactId=\${project.artifactId}
+groupId=\${project.groupId}
+version=\${project.version}</source>
       </subsection>
 
       <a name="class_manifest"/>
@@ -192,16 +206,27 @@
             <td></td>
           </tr>
           <tr>
+            <td>addDefaultEntries</td>
+            <td>
+              If the manifest will contain these entries:
+              <source>
+Created-By: Maven Archiver ${maven-archiver.version}
+Build-Jdk-Spec: ${java.specification.version}</source>
+              Since 3.5.0, the default value of <code>Created-By</code> entry can be overridden using
+              <a href="./apidocs/org/apache/maven/archiver/MavenArchiver.html">MavenArchiver.setCreatedBy(...)</a> API.<br />
+              The default value is <code>true</code>.
+            </td>
+            <td>boolean</td>
+            <td>3.4.0</td>
+          </tr>
+          <tr>
             <td>addDefaultImplementationEntries</td>
             <td>
               If the manifest will contain these entries:
               <source>
 Implementation-Title: \${project.name}
 Implementation-Version: \${project.version}
-Implementation-Vendor-Id: \${project.groupId}
-Implementation-Vendor: \${project.organization.name}
-Implementation-URL: \${project.url}
-              </source>
+Implementation-Vendor: \${project.organization.name}</source>
               The default value is <code>false</code>.
             </td>
             <td>boolean</td>
@@ -214,12 +239,24 @@ Implementation-URL: \${project.url}
               <source>
 Specification-Title: \${project.name}
 Specification-Version: \${project.artifact.selectedVersion.majorVersion}.\${project.artifact.selectedVersion.minorVersion}
-Specification-Vendor: \${project.organization.name}
-              </source>
+Specification-Vendor: \${project.organization.name}</source>
               The default value is <code>false</code>.
             </td>
             <td>boolean</td>
             <td>2.1</td>
+          </tr>
+          <tr>
+            <td>addBuildEnvironmentEntries</td>
+            <td>
+              If the manifest will contain these entries:
+              <source>
+Build-Tool: ${maven.build.version}
+Build-Jdk: ${java.version} (${java.vendor})
+Build-Os:  ${os.name} (${os.version}; (${os.arch})</source>
+              The default value is <code>false</code>.
+            </td>
+            <td>boolean</td>
+            <td>3.4.0</td>
           </tr>
           <tr>
             <td>addExtensions</td>
@@ -245,17 +282,6 @@ Specification-Vendor: \${project.organization.name}
             </td>
             <td>String</td>
             <td>2.4</td>
-          </tr>
-          <tr>
-            <td>classpathMavenRepositoryLayout</td>
-            <td>
-              The created <code>Class-Path</code> entry will contain paths
-              that follow the Maven 2 repository layout:
-              <code>${groupId}/${artifactId}/${version}/${fileName}</code>.
-              The default value is <code>false</code>.
-            </td>
-            <td>boolean</td>
-            <td>2.3</td>
           </tr>
           <tr>
             <td>classpathPrefix</td>
@@ -332,19 +358,6 @@ Specification-Vendor: \${project.organization.name}
             <td></td>
           </tr>
         </table>
-      </subsection>
-
-      <a name="pom-properties-content"/>
-      <subsection name="pom.properties content">
-        <p>
-          The auto created <code>pom.properties</code> file will contain the
-          following content:
-        </p>
-        <source>
-version=\${project.version}
-groupId=\${project.groupId}
-artifactId=\${project.artifactId}
-        </source>
       </subsection>
     </section>
   </body>
