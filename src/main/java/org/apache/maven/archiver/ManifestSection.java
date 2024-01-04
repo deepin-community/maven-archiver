@@ -23,16 +23,18 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * @version $Id: ManifestSection.java 1738422 2016-04-10 11:51:15Z khmarbaise $
+ * <p>ManifestSection class.</p>
  */
 public class ManifestSection
 {
 
     private String name = null;
 
-    private Map<String, String> manifestEntries = new LinkedHashMap<String, String>();
+    private final Map<String, String> manifestEntries = new LinkedHashMap<>();
 
     /**
+     * <p>addManifestEntry.</p>
+     *
      * @param key The key of the manifest entry.
      * @param value The appropriate value.
      */
@@ -42,6 +44,8 @@ public class ManifestSection
     }
 
     /**
+     * <p>Getter for the field <code>manifestEntries</code>.</p>
+     *
      * @return The entries.
      */
     public Map<String, String> getManifestEntries()
@@ -50,6 +54,8 @@ public class ManifestSection
     }
 
     /**
+     * <p>Getter for the field <code>name</code>.</p>
+     *
      * @return The name.
      */
     public String getName()
@@ -58,6 +64,8 @@ public class ManifestSection
     }
 
     /**
+     * <p>Setter for the field <code>name</code>.</p>
+     *
      * @param name the name.
      */
     public void setName( String name )
@@ -66,6 +74,8 @@ public class ManifestSection
     }
 
     /**
+     * <p>addManifestEntries.</p>
+     *
      * @param map The map to add.
      */
     public void addManifestEntries( Map<String, String> map )
@@ -74,6 +84,8 @@ public class ManifestSection
     }
 
     /**
+     * <p>isManifestEntriesEmpty.</p>
+     *
      * @return true if empty false otherwise.
      */
     public boolean isManifestEntriesEmpty()

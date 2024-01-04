@@ -16,8 +16,6 @@
 # and version starting with 3., replacing the version with 3.x
 #   junit junit jar s/3\\..*/3.x/
 
-junit junit jar s/4\..*/4.x/ * *
-
 org.apache.maven maven-artifact * s/.*/3.x/ * *
 org.apache.maven maven-core     * s/.*/3.x/ * *
 org.apache.maven maven-model    * s/.*/3.x/ * *
