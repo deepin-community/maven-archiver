@@ -4,7 +4,7 @@ Forwarded: not-needed
 Bug-Debian: https://bugs.debian.org/775010
 --- a/src/main/java/org/apache/maven/archiver/PomPropertiesUtil.java
 +++ b/src/main/java/org/apache/maven/archiver/PomPropertiesUtil.java
-@@ -155,7 +155,8 @@
+@@ -136,7 +136,8 @@
          }
          else
          {
